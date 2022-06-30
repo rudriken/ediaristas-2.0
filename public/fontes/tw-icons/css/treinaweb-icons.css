@@ -13,10 +13,10 @@
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
+@font-face {
     font-family: 'treinaweb-icons';
     src: url('../font/treinaweb-icons.svg?58514601#treinaweb-icons') format('svg');
-  }
+}
 }
 */
 
