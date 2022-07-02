@@ -1,12 +1,12 @@
 import React from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import Router from "next/router";
-import { Link as MuiLink, LinkProps as MuiLinkProps } from "@mui/material";
+import { Link as MuiLink, LinkProps as MuiLinkProps, ButtonProps } from "@mui/material";
 
 export interface EloProps {
     children?: string | JSX.Element;
     href: string;
-    mui?: MuiLinkProps;
+    mui?: MuiLinkProps | ButtonProps;
     next?: NextLinkProps;
     ComponenteReact?: React.ElementType; // "React.ElementType": componente React
     aoClicar?: () => void;
