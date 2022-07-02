@@ -1,30 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "@estilos/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { ThemeProvider } from "@mui/material";
-import temaOficial, { temaVermelho } from "visual/temas/temas";
+import temaOficial from "visual/temas/temas";
+import Cabecalho from "visual/componentes/superficies/Header/Header";
+import Rodape from "visual/componentes/superficies/Footer/Footer";
+import { AppContainer } from "@estilos/pages/_app.styled";
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const [meuTema, alterarMeuTema] = useState(temaOficial);
-
     useEffect(() => {
         document.querySelector("#jss-server-side")?.remove();
-    }, []);
-
-    useEffect(() => {
-        setTimeout(() => {
-            alterarMeuTema(temaVermelho);
-        }, 3000);
     }, []);
 
     return (
         <>
             <Head>
-                <title>e-diaristas</title>
+                <title>e-diaristas {pageProps.título && ` - ${pageProps.título}`}</title>
             </Head>
-            <ThemeProvider theme={meuTema}>
-                <Component {...pageProps} />
+            <ThemeProvider theme={temaOficial}>
+                <AppContainer>
+                    <Cabecalho />
+                    <main>
+                        <Component {...pageProps} />
+                    </main>
+                    <Rodape />
+                </AppContainer>
             </ThemeProvider>
         </>
     );

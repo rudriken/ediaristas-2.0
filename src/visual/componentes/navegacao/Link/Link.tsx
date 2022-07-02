@@ -25,13 +25,11 @@ const Elo: React.FC<EloProps> = ({
      * ambiente Next
      */
     return ambienteNext ? (
-        <div>
-            <NextLink href={href} passHref {...next}>
-                <ComponenteReact {...mui} {...outras}>
-                    {children}
-                </ComponenteReact>
-            </NextLink>
-        </div>
+        <NextLink href={href} passHref {...next}>
+            <ComponenteReact {...mui} {...outras}>
+                {children}
+            </ComponenteReact>
+        </NextLink>
     ) : (
         <ComponenteReact href={href} {...mui} {...outras}>
             {children}
