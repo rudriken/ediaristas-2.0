@@ -1,5 +1,5 @@
 const DuvidasFrequentes = () => {
-    return <div>Dúvidas Frequentes</div>;
+    return <div></div>;
 };
 
 export default DuvidasFrequentes;
