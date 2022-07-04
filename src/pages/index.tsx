@@ -15,7 +15,8 @@ const Index: NextPage = () => {
     return (
         <div>
             <Apresentacao />
-			<Vantagens />
+            <Vantagens />
+            <DuvidasFrequentes />
         </div>
     );
 };
