@@ -18,7 +18,7 @@ export const RodapeContainer = styled("footer")`
     margin-top: auto;
 `;
 
-export const RodapeTitulo = styled((propriedades: TypographyProps) => (
+export const RodapeTitulo = styled((propriedades: TypographyProps<any>) => (
     <Typography variant={"body2"} component={"h2"} {...propriedades} />
 ))`
     font-weight: bold;
@@ -61,7 +61,7 @@ export const RedesSociais = styled(List)`
     grid-gap: ${({ theme }) => theme.spacing(1.5)};
 `;
 
-export const BotaoRedeSocial = styled((propriedades: LinkProps) => (
+export const BotaoRedeSocial = styled((propriedades: LinkProps<any>) => (
     <Link
         component={IconButton}
         target={"_blank"}
