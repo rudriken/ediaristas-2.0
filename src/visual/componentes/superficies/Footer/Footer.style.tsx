@@ -1,3 +1,4 @@
+import React, { ElementType } from "react";
 import {
     styled,
     Typography,
@@ -18,7 +19,7 @@ export const RodapeContainer = styled("footer")`
     margin-top: auto;
 `;
 
-export const RodapeTitulo = styled((propriedades: TypographyProps<any>) => (
+export const RodapeTitulo = styled((propriedades: TypographyProps<React.ElementType>) => (
     <Typography variant={"body2"} component={"h2"} {...propriedades} />
 ))`
     font-weight: bold;
@@ -60,8 +61,8 @@ export const RedesSociais = styled(List)`
     grid-template-columns: repeat(3, 58px);
     grid-gap: ${({ theme }) => theme.spacing(1.5)};
 `;
-
-export const BotaoRedeSocial = styled((propriedades: LinkProps<any>) => (
+/* ( . . . ) */
+export const BotaoRedeSocial = styled((propriedades: LinkProps<React.ElementType>) => (
     <Link
         component={IconButton}
         target={"_blank"}
@@ -74,7 +75,7 @@ export const BotaoRedeSocial = styled((propriedades: LinkProps<any>) => (
         color: ${({ theme }) => theme.palette.primary.contrastText};
     }
 `;
-
+/* ( . . . ) */
 export const RodapeSubContainer = styled(Container)`
     display: flex;
     justify-content: space-between;
