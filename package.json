@@ -9,7 +9,8 @@
         "lint": "next lint",
         "storybook": "start-storybook -p 6006 -s ./public",
         "build-storybook": "build-storybook",
-        "testes": "jest --watch"
+        "testes": "jest --watch",
+		"plop": "plop"
     },
     "dependencies": {
         "@emotion/react": "^11.9.3",
@@ -43,6 +44,7 @@
         "eslint-config-next": "12.2.0",
         "jest": "^28.1.3",
         "jest-environment-jsdom": "^28.1.3",
+        "plop": "^3.1.1",
         "typescript": "4.7.4"
     }
 }
