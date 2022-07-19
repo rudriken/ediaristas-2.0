@@ -17,16 +17,19 @@ module.exports = function (gerarCódigoAutomático, manipuladores) {
             const ações = [
                 {
                     type: "add",
-                    path: `src/visual/parciais/${dado.pastaPar.toLowerCase()}/_${manipuladores.createFilename(dado.nomePar)}.tsx`,
+                    path: `src/visual/parciais/${dado.pastaPar.toLowerCase()}/_${
+						manipuladores.createFilename(dado.nomePar)
+					}.tsx`,
                     templateFile: "plop/paginas/parcial-modelo.hbs",
                 },
                 {
                     type: "add",
-                    path: `src/visual/parciais/${dado.pastaPar.toLowerCase()}/_${manipuladores.createFilename(dado.nomePar)}.styled.tsx`,
+                    path: `src/visual/parciais/${dado.pastaPar.toLowerCase()}/_${
+						manipuladores.createFilename(dado.nomePar)
+					}.styled.tsx`,
                     templateFile: "plop/paginas/pagina-style-modelo.hbs",
                 },
             ];
-
             return ações;
         },
     });

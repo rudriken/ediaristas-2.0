@@ -21,8 +21,8 @@ const manipuladores = {
         caminho += `${nome.toLowerCase()}`;
         return caminho;
     },
-    createFilename(componenteNome) {
-        return componenteNome
+    createFilename(nomeDoComponentePáginaOuParcial) {
+        return nomeDoComponentePáginaOuParcial
             .replace(/([A-Z])/g, " $1")
             .trim()
             .toLowerCase()

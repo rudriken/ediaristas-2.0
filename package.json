@@ -10,7 +10,7 @@
         "storybook": "start-storybook -p 6006 -s ./public",
         "build-storybook": "build-storybook",
         "testes": "jest --watch",
-		"plop": "plop"
+        "plop": "plop"
     },
     "dependencies": {
         "@emotion/react": "^11.9.3",
@@ -19,7 +19,8 @@
         "@mui/styles": "^5.8.6",
         "next": "12.2.0",
         "react": "18.2.0",
-        "react-dom": "18.2.0"
+        "react-dom": "18.2.0",
+        "react-input-mask": "^2.0.4"
     },
     "devDependencies": {
         "@babel/core": "^7.18.6",
@@ -38,6 +39,7 @@
         "@types/node": "18.0.0",
         "@types/react": "17.0.14",
         "@types/react-dom": "18.0.5",
+        "@types/react-input-mask": "^3.0.1",
         "babel-jest": "^28.1.3",
         "babel-loader": "^8.2.5",
         "eslint": "8.18.0",
