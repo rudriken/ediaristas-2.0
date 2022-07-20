@@ -48,6 +48,7 @@ const tema_oficial = createTheme({
     shape: {
         borderRadius: "3px",
     },
+    // ( . . . )
     components: {
         MuiButton: {
             styleOverrides: {
