@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Button } from "@mui/material";
+import { Container, Typography, Button, CircularProgress } from "@mui/material";
 import TituloPagina from "visual/componentes/exibe-dados/TituloPagina/TituloPagina";
 import AmbienteSeguro from "visual/componentes/retorno/AmbienteSeguro/AmbienteSeguro";
 import {
@@ -9,15 +9,27 @@ import {
 } from "./_verificar-profissionais.styled";
 import CampoDeTextoComMascara from "visual/componentes/entradas/CampoDeTextoComMascara/CampoDeTextoComMascara";
 import InformacaoDoUsuario from "visual/componentes/exibe-dados/InformacaoDoUsuario/InformacaoDoUsuario";
+import useVerificarProfissionais from "lógica/ganchos/pages/useVerificarProfissionais.page";
 
 const VerificarProfissionais: React.FC = () => {
+    const {
+        cep,
+        definirCep,
+        cepVálido,
+        buscarProfissionais,
+        erro,
+        listaDiaristas,
+        buscaFeita,
+        carregando,
+        diaristasRestantes,
+    } = useVerificarProfissionais();
     return (
         <>
             <AmbienteSeguro />
             <TituloPagina
                 título={"Conheça os profissionais"}
                 subtítulo={
-                    "Preencha seu endereço e veja todos os profissionais da sua localidade"
+                    "Preencha seu endereço e veja todos os profissionais da sua localida-de"
                 }
             />
             <Container sx={{ mb: 10 }}>
@@ -26,64 +38,63 @@ const VerificarProfissionais: React.FC = () => {
                         máscara={"99.999-999"}
                         label={"Digite seu CEP"}
                         fullWidth
+                        value={cep}
+                        onChange={(evento) => definirCep(evento.target.value)}
                     />
-                    <Typography color={"error"}>CEP não encontrado</Typography>
+                    {erro && <Typography color={"error"}>{erro}</Typography>}
                     <Button
                         variant={"contained"}
                         color={"secondary"}
                         sx={{ width: "220px" }}
+                        disabled={!cepVálido || carregando}
+                        onClick={() => buscarProfissionais(cep)}
                     >
-                        Buscar
+                        {carregando ? <CircularProgress size={20} /> : "Buscar"}
                     </Button>
                 </FormularioContainer>
-                <PapelProfissionais>
-                    <ContainerProfissionais>
-                        <InformacaoDoUsuario
-                            nome={"Mariana Rocha de Queiroz"}
-                            foto={"/imagens/fotos/Mariana Rocha de Queiroz.png"}
-                            descrição={"Uberlândia"}
-                            avaliação={5}
-                        />
-                        <InformacaoDoUsuario
-                            nome={"Lídia Moraes Ribeiro Resende"}
-                            foto={"/imagens/fotos/Lídia Moraes Ribeiro Resende.png"}
-                            descrição={"Ituiutaba"}
-                            avaliação={4}
-                        />
-                        <InformacaoDoUsuario
-                            nome={"Rodrigo Gomes de Mendonça"}
-                            foto={"/imagens/fotos/Rodrigo Gomes de Mendonça.png"}
-                            descrição={"Uberlândia"}
-                            avaliação={3}
-                        />
-                        <InformacaoDoUsuario
-                            nome={"Carlos Alberto Momenté"}
-                            foto={"/imagens/fotos/Carlos Alberto Momenté.png"}
-                            descrição={"Catalão"}
-                            avaliação={2}
-                        />
-                        <InformacaoDoUsuario
-                            nome={"Ezequiel Ferreira da Silva"}
-                            foto={"/imagens/fotos/Ezequiel Ferreira da Silva.png"}
-                            descrição={"Goiatuba"}
-                            avaliação={2}
-                        />
-                        <InformacaoDoUsuario
-                            nome={"Maria Odenízia de Melo Silva"}
-                            foto={"/imagens/fotos/Maria Odenízia de Melo Silva.png"}
-                            descrição={"Gameleira"}
-                            avaliação={2}
-                        />
-                    </ContainerProfissionais>
-                    <Container sx={{ textAlign: "center" }}>
-                        <Typography variant={"body2"} color={"textSecondary"} sx={{ mt: 5 }}>
-                            ... e mais 50 profissionais atendem ao seu endereço
+
+                {buscaFeita &&
+                    (listaDiaristas.length > 0 ? (
+                        <PapelProfissionais>
+                            <ContainerProfissionais>
+                                {listaDiaristas.map((item, índice) => (
+                                    <InformacaoDoUsuario
+                                        key={índice}
+                                        nome={item.nome}
+                                        foto={item.foto_do_usuário || ""}
+                                        descrição={item.cidade}
+                                        avaliação={item.reputação || 0}
+                                    />
+                                ))}
+                            </ContainerProfissionais>
+                            <Container sx={{ textAlign: "center" }}>
+                                {diaristasRestantes > 0 && (
+                                    <Typography
+                                        variant={"body2"}
+                                        color={"textSecondary"}
+                                        sx={{ mt: 5 }}
+                                    >
+                                        ... e mais {diaristasRestantes}{" "}
+                                        {diaristasRestantes > 1
+                                            ? "profissionais atendem "
+                                            : "profissional atende "}
+                                        ao seu endereço
+                                    </Typography>
+                                )}
+                                <Button
+                                    variant={"contained"}
+                                    color={"secondary"}
+                                    sx={{ mt: 5 }}
+                                >
+                                    Contratar um(a) profissional
+                                </Button>
+                            </Container>
+                        </PapelProfissionais>
+                    ) : (
+                        <Typography align={"center"} color={"textPrimary"}>
+                            Ainda não temos nenhum(a) diarista disponível em sua região.
                         </Typography>
-                        <Button variant={"contained"} color={"secondary"} sx={{ mt: 5 }}>
-                            Contratar um(a) profissional
-                        </Button>
-                    </Container>
-                </PapelProfissionais>
+                    ))}
             </Container>
         </>
     );
